@@ -26,14 +26,20 @@
       <button @click="randomQuote">Random Quote</button>
     </div>
     <code>{{ apiurl }}</code>
-    <blockquote v-for="(quote, index) in quotes" v-bind:key="index">
-      <p>{{ quote.quote }}</p>
-      <cite>{{ quote.author }}</cite>
-    </blockquote>
+    <p v-if="quotes.length > 0">
+      Showing {{ quotes.length }} out of {{ total }} quotes
+    </p>
+    <template v-if="quotes.length > 0 && total !== 0">
+      <blockquote v-for="(quote, index) in quotes" v-bind:key="index">
+        <p>{{ quote.quote }}</p>
+        <cite>{{ quote.author }}</cite>
+      </blockquote>
+    </template>
+    <p v-else-if="total !== 0">There were no quotes found</p>
   </div>
 </template>
 <script setup>
-let { quotes, apiurl, randomQuote, manyQuotes } = await quotesData();
+let { quotes, apiurl, randomQuote, manyQuotes, total } = await quotesData();
 </script>
 <script>
 export default {
@@ -138,6 +144,7 @@ code {
   padding: 15px;
   box-sizing: border-box;
   margin: 50px 0;
+  overflow: hidden;
   font-weight: 700;
   position: relative;
 }
@@ -179,6 +186,11 @@ a {
   .search__bar form {
     flex-direction: column;
   }
+  h2 {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
   code {
     width: 100%;
   }
@@ -190,6 +202,11 @@ a {
   .search__bar button {
     margin: 0;
     margin-top: 15px;
+  }
+}
+@media (max-width: 450px) {
+  .landing {
+    padding: 0 25px;
   }
 }
 </style>

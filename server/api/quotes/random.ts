@@ -1,6 +1,12 @@
 import quotesBank from '../../json/quotes';
 
+let quotesTotal = quotesBank.length
+let returnData = {
+    total: quotesTotal,
+    data: []
+}
 export default (req, res) => {
     let getQuote = quotesBank[Math.floor(Math.random() * quotesBank.length)];
-    return getQuote;
+    returnData.data.push(getQuote)
+    return returnData;
 }
