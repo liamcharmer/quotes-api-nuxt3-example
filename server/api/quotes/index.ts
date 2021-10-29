@@ -7,6 +7,7 @@ let returnData = {
 
 
 export default (req, res) => {
+    returnData.data = quotesTotal;
     if (req.query.author != null) {
         let authorQuotes = quotesBank.filter(function (o) {
             return o.author.toUpperCase() === req.query.author.toUpperCase();

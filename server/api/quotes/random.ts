@@ -6,6 +6,8 @@ let returnData = {
     data: []
 }
 export default (req, res) => {
+
+    returnData.data = []
     let getQuote = quotesBank[Math.floor(Math.random() * quotesBank.length)];
     returnData.data.push(getQuote)
     return returnData;
