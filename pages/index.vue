@@ -32,7 +32,14 @@
     <template v-if="quotes.length > 0 && total !== 0">
       <blockquote v-for="(quote, index) in quotes" v-bind:key="index">
         <p>{{ quote.quote }}</p>
-        <cite>{{ quote.author }}</cite>
+        <cite
+          ><a
+            :href="`https://en.wikipedia.org/wiki/${quote.author}`"
+            target="_blank"
+          >
+            {{ quote.author }}</a
+          ></cite
+        >
       </blockquote>
     </template>
     <p v-else-if="total !== 0">There were no quotes found</p>
